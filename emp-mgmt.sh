@@ -1,5 +1,5 @@
 #!/bin/bash
-
+mydb="mydb"
 # Check if sysvbanner is installed
 if ! command -v banner &> /dev/null; then
     echo "Installing sysvbanner..."
@@ -46,7 +46,7 @@ main_menu() {
         case $choice in
             1) add_record ;;
             2) delete_record ;;
-            3) edit_employee;;
+            3) edit_employee ;;
             4) display_records ;;
             5) sort_records ;;
             6) search_record ;;
@@ -85,7 +85,6 @@ delete_record() {
         echo "Record not found!"
     fi
 }
-
 edit_employee() {
     read -p "Enter the employee ID to edit: " id
 
@@ -133,25 +132,6 @@ edit_employee() {
     echo "Employee details updated successfully."
 }
 
-
-
-display_records() {
-    echo "--- Employee Records ---"
-    if [[ ! -s mydb ]]; then
-        echo "No records found!"
-        return
-    fi
-
-    echo -e "ID\tName\tAge\tSalary\tDesignation"
-    echo "-----------------------------------------"
-    column -t -s $'\t' mydb
-}
-
-sort_records() {
-    echo "--- Sorted Records by ID ---"
-    sort -n mydb | column -t -s $'\t'
-}
-
 search_record() {
     echo "--- Search Record ---"
     read -p "Enter Employee ID to search: " id
@@ -169,6 +149,23 @@ search_record() {
     else
         echo "Record not found!"
     fi
+}
+
+display_records() {
+    echo "--- Employee Records ---"
+    if [[ ! -s mydb ]]; then
+        echo "No records found!"
+        return
+    fi
+
+    echo -e "ID\tName\tAge\tSalary\tDesignation"
+    echo "-----------------------------------------"
+    column -t -s $'\t' mydb
+}
+
+sort_records() {
+    echo "--- Sorted Records by ID ---"
+    sort -n mydb | column -t -s $'\t'
 }
 
 count_records() {

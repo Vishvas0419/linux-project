@@ -21,7 +21,7 @@ login() {
     pass=$(whiptail --passwordbox "Enter Password:" 8 40 --title "LOGIN" 3>&1 1>&2 2>&3)
     [ $? -ne 0 ] && exit 1
 
-    if [[ "$user" == "group18" && "$pass" == "18" ]]; then
+    if [[ "$user" == "vishvas" && "$pass" == "1082" ]]; then
         whiptail --msgbox "Login successful!" 8 40
         main_menu
     else
